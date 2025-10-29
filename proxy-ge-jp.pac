@@ -1,4 +1,11 @@
 function FindProxyForURL(url, host) {
+    // === DEBUG LOG ===
+    var debugMode = true; // set to false to disable debug alerts
+    
+    if (debugMode) {
+        alert("PAC called for: " + host + " (URL: " + url + ")");
+    }
+    
     // === PROXY SETTINGS ===
     var YOUTUBE_PROXY_1 = "PROXY 85.117.62.78:8080";
     var YOUTUBE_PROXY_2 = "PROXY 192.168.1.23:80";
@@ -27,6 +34,7 @@ function FindProxyForURL(url, host) {
         for (var i = 0; i < list.length; i++) {
             var domain = list[i];
             if (dnsDomainIs(host, domain) || shExpMatch(host, "*." + domain)) {
+                if (debugMode) alert("Matched domain: " + host + " -> " + domain);
                 return true;
             }
         }
@@ -41,31 +49,41 @@ function FindProxyForURL(url, host) {
     // === UNIVERSAL DIRECT MATCH ===
     function matchDirectList(host) {
         for (var i = 0; i < directList.length; i++) {
-            var pattern = directList[i].replace(/^\s+|\s+$/g, ''); // trim spaces
-            if (shExpMatch(host, pattern)) return true;
+            var pattern = directList[i].replace(/^\s+|\s+$/g, '');
+            if (shExpMatch(host, pattern)) {
+                if (debugMode) alert("Direct match: " + host + " -> " + pattern);
+                return true;
+            }
         }
         return false;
     }
 
     // === YOUTUBE FAILOVER BLOCK ===
     if (matchHostList(youtubeDomains, host)) {
+        var ytReturn;
         if (ENABLE_YT_FAILOVER) {
-            return YOUTUBE_PROXY_1 + "; " + YOUTUBE_PROXY_2 + "; DIRECT";
+            ytReturn = YOUTUBE_PROXY_1 + "; " + YOUTUBE_PROXY_2 + "; DIRECT";
+            if (debugMode) alert("YouTube: using failover (" + YOUTUBE_PROXY_1 + " -> " + YOUTUBE_PROXY_2 + ")");
         } else {
-            return YOUTUBE_PROXY_1 + "; DIRECT";
+            ytReturn = YOUTUBE_PROXY_1 + "; DIRECT";
+            if (debugMode) alert("YouTube: using single proxy (" + YOUTUBE_PROXY_1 + ")");
         }
+        return ytReturn;
     }
 
     // === TWITTER BLOCK ===
     if (matchHostList(twitterDomains, host)) {
+        if (debugMode) alert("Twitter/X: routing to " + TWITTER_PROXY);
         return TWITTER_PROXY;
     }
 
     // === DIRECT BLOCK ===
     if (matchDirectList(host)) {
+        if (debugMode) alert("Routing " + host + " directly (bypassing proxy)");
         return "DIRECT";
     }
 
-    // === ELSE ===
-    return YOUTUBE_PROXY_1 + "; " + YOUTUBE_PROXY_2 + "; DIRECT";
+    // === ELSE - ALL OTHER TRAFFIC ===
+    if (debugMode) alert("Default routing for " + host + " through YouTube proxy chain");
+    return ENABLE_YT_FAILOVER ? YOUTUBE_PROXY_1 + "; " + YOUTUBE_PROXY_2 + "; DIRECT" : YOUTUBE_PROXY_1 + "; DIRECT";
 }
