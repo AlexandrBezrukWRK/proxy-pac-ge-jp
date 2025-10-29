@@ -1,6 +1,6 @@
 function FindProxyForURL(url, host) {
     // === DEBUG LOG ===
-    var debugMode = true; // set to false to disable debug alerts
+    var debugMode = false; // set to false to disable debug alerts
     
     if (debugMode) {
         alert("PAC called for: " + host + " (URL: " + url + ")");
