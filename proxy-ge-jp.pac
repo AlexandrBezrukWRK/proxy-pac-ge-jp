@@ -26,7 +26,7 @@ function FindProxyForURL(url, host) {
         "twitterinc.com","cms-twdigitalassets.com","api.twitter.com",
         "upload.twitter.com","cdn.twitter.com","abs.twimg.com",
         "video.twitter.com","syndication.twitter.com","analytics.twitter.com",
-        "caps.twitter.com","chatgpt.com","flibusta.is"
+        "caps.twitter.com","chatgpt.com","flibusta.is", "4pda.to"
     ];
 
     // === UNIVERSAL HOST MATCH FUNCTION ===
