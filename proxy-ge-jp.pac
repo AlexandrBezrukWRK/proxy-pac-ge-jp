@@ -7,8 +7,9 @@ function FindProxyForURL(url, host) {
     }
 
     // === PROXY SETTINGS ===
-    var YOUTUBE_PROXY_1 = "PROXY 85.117.62.78:8080";
-    var YOUTUBE_PROXY_2 = "PROXY 192.168.1.23:80";
+    var YOUTUBE_PROXY_1 = "PROXY 49.144.19.222:8082";
+    var YOUTUBE_PROXY_2 = "PROXY 85.117.62.78:8080";
+    var YOUTUBE_PROXY_3 = "PROXY 192.168.1.23:80";
     var TWITTER_PROXY = "PROXY 192.168.1.23:80; DIRECT";
 
     // === FAILOVER CONTROL ===
@@ -68,8 +69,8 @@ function FindProxyForURL(url, host) {
     if (matchHostList(youtubeDomains, host)) {
         var ytReturn;
         if (ENABLE_YT_FAILOVER) {
-            ytReturn = YOUTUBE_PROXY_1 + "; " + YOUTUBE_PROXY_2 + "; DIRECT";
-            if (debugMode) alert("YouTube: using failover (" + YOUTUBE_PROXY_1 + " -> " + YOUTUBE_PROXY_2 + ")");
+            ytReturn = YOUTUBE_PROXY_1 + "; " + YOUTUBE_PROXY_2 + "; " + YOUTUBE_PROXY_3 + "; DIRECT";
+            if (debugMode) alert("YouTube: using failover (" + YOUTUBE_PROXY_1 + " -> " + YOUTUBE_PROXY_2 + " -> " + YOUTUBE_PROXY_3 + ")");
         } else {
             ytReturn = YOUTUBE_PROXY_1 + "; DIRECT";
             if (debugMode) alert("YouTube: using single proxy (" + YOUTUBE_PROXY_1 + ")");
