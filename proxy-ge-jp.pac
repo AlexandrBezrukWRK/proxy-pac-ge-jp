@@ -19,7 +19,9 @@ function FindProxyForURL(url, host) {
     var youtubeDomains = [
         "youtube.com","m.youtube.com","youtube-nocookie.com",
         "youtu.be","googlevideo.com","ytimg.com","ggpht.com",
-        "gstatic.com","static.doubleclick.net"
+        "gstatic.com","static.doubleclick.net", "xvideos.com",
+        "www.xv-ru.com", "xvideos-cdn.com", "cdn77-vid.xvideos-cdn.com",
+        "ua"
     ];
     var twitterDomains = [
         "x.com","twitter.com","t.co","api.t.co","twimg.com",
