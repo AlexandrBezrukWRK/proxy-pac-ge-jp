@@ -7,7 +7,7 @@ function FindProxyForURL(url, host) {
     }
 
     // === PROXY SETTINGS ===
-    var YOUTUBE_PROXY_1 = "PROXY 85.117.62.78:8080";
+    var YOUTUBE_PROXY_1 = "PROXY 85.117.61.112:8080";
     var YOUTUBE_PROXY_2 = "PROXY 94.43.164.242:8080";
     var YOUTUBE_PROXY_3 = "PROXY 192.168.1.23:80";
     var TWITTER_PROXY = "PROXY 192.168.1.23:80; DIRECT";
@@ -20,7 +20,7 @@ function FindProxyForURL(url, host) {
         "youtube.com","m.youtube.com","youtube-nocookie.com",
         "youtu.be","googlevideo.com","ytimg.com","ggpht.com",
         "gstatic.com","static.doubleclick.net", "xvideos.com",
-        "www.xv-ru.com", "xvideos-cdn.com", "cdn77-vid.xvideos-cdn.com",
+        "www.xv-ru.com", "xvideos-cdn.com", "rt.pornhub.com", "cdn77-vid.xvideos-cdn.com",
         "ua"
     ];
     var twitterDomains = [
