@@ -7,10 +7,10 @@ function FindProxyForURL(url, host) {
     }
 
     // === PROXY SETTINGS ===
-    var YOUTUBE_PROXY_1 = "PROXY 85.117.61.112:8080";
+    var YOUTUBE_PROXY_1 = "PROXY 85.117.56.43:8080";
     var YOUTUBE_PROXY_2 = "PROXY 94.43.164.242:8080";
     var YOUTUBE_PROXY_3 = "PROXY 192.168.1.23:80";
-    var TWITTER_PROXY = "PROXY 85.117.61.112:8080; DIRECT";
+    var TWITTER_PROXY = "PROXY 85.117.56.43:8080; DIRECT";
 
     // === FAILOVER CONTROL ===
     var ENABLE_YT_FAILOVER = true; // set to false to disable proxy failover
